@@ -1,4 +1,5 @@
 * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -107,6 +108,10 @@ p {
   border-radius: 20px;
 }
 
+.btn:focus {
+  outline: none;
+}
+
 .btn--card {
   font-size: 16px;
   line-height: 19px;
@@ -123,13 +128,21 @@ p {
 .header__logo {}
 
 .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   cursor: pointer;
 }
 
 .nav__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
 }
 
@@ -141,6 +154,29 @@ p {
   font-size: 18px;
   line-height: 21px;
   color: var(--white);
+  position: relative;
+}
+
+.nav__link::after {
+  position: absolute;
+  width: 0%;
+  content: '';
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #fff;
+  -webkit-transition: width .2s ease-in-out;
+  -o-transition: width .2s ease-in-out;
+  transition: width .2s ease-in-out;
+}
+
+.nav__link:focus {
+  outline: none;
+}
+
+.nav__link:hover::after,
+.nav__link:focus::after {
+  width: 100%;
 }
 
 .header__burger {
@@ -153,6 +189,7 @@ p {
 
 /*--hero--*/
 .hero {
+  background: -o-radial-gradient(67.78% 55.93%, 44.07% 44.07%, #555681 0%, var(--steel-gray) 100%);
   background: radial-gradient(44.07% 44.07% at 67.78% 55.93%, #555681 0%, var(--steel-gray) 100%);
 }
 
@@ -213,12 +250,18 @@ p {
 }
 
 .advantages__list {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   /*padding: 0 15px;*/
 }
 
 .feature-small-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -255,6 +298,7 @@ p {
   display: block;
   width: 100%;
   height: 180px;
+  -o-object-fit: cover;
   object-fit: cover;
   border-radius: 20px 20px 0px 0px;
   margin-bottom: 32px;
@@ -311,7 +355,12 @@ p {
 }
 
 .course-card__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
   height: 100%;
 }
@@ -330,7 +379,11 @@ p {
 }
 
 .course-card__clock {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   position: absolute;
   top: 10px;
@@ -356,11 +409,15 @@ p {
 .footer__social {}
 
 .social {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: var(--steel-gray);
 }
 
 .social {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
   padding: 28px 0;
 }
@@ -370,14 +427,29 @@ p {
 }
 
 .social__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   height: 24px;
   width: 24px;
 }
 
-.social__link svg {}
+.social__icon {
+  fill: white;
+  -webkit-transition: fill .2s ease-in-out;
+  -o-transition: fill .2s ease-in-out;
+  transition: fill .2s ease-in-out;
+}
+
+.social__icon:hover {
+  fill: #7c6dff;
+}
 
 .copyright {
   text-align: center;
@@ -434,7 +506,12 @@ p {
   }
 
   .feature-small-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
   }
 
@@ -489,10 +566,14 @@ p {
   }
 
   .logo {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
 
   .nav__list {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
 
@@ -578,6 +659,8 @@ p {
   }
 
   .logo {
+    -webkit-box-pack: left;
+    -ms-flex-pack: left;
     justify-content: left;
   }
 
@@ -587,8 +670,44 @@ p {
     padding-top: 2px;
   }
 
-  .nav {
-    display: none;
+  .nav__list {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 100vw;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    visibility: hidden;
+    background-color: var(--blue-color);
+    opacity: 0;
+    padding: 20px;
+    z-index: 5;
+    -webkit-transition:
+      background-color .3s ease-in-out,
+      height .3s ease-in-out,
+      opacity .3s ease-in-out,
+      visibility .3s ease-in-out;
+    -o-transition:
+      background-color .3s ease-in-out,
+      height .3s ease-in-out,
+      opacity .3s ease-in-out,
+      visibility .3s ease-in-out;
+    transition:
+      background-color .3s ease-in-out,
+      height .3s ease-in-out,
+      opacity .3s ease-in-out,
+      visibility .3s ease-in-out;
+  }
+
+  .nav-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav__item:not(:last-child) {
+    margin-bottom: 20px;
   }
 
   .header__burger {
@@ -642,11 +761,24 @@ p {
   }
 
   .feature-small-card {
+    -webkit-box-orient: inherit;
+    -webkit-box-direction: inherit;
+    -ms-flex-direction: inherit;
     flex-direction: inherit;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+
+  .feature-small-card svg {
+    margin: 0 20px 10px 0px;
   }
 
   .feature-small-card__text {
-    width: 62%;
+    width: 70%;
   }
 
   .teacher__container {
@@ -675,7 +807,7 @@ p {
   }
 
   .course-card__info {
-    min-height: 412px;
+    /*min-height: 412px;*/
   }
 
   .title--card {
@@ -689,11 +821,9 @@ p {
 
   .course-card__text {
     /*margin-bottom: 82px;*/
-    margin-bottom: 0;
+    /*/*margin-bottom: 0;*/
+    margin-bottom: 20px;
   }
-
-
-
 
   .btn--card {
     padding: 20px 56px;
